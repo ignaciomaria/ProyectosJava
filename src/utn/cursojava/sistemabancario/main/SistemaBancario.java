@@ -43,7 +43,7 @@ public class SistemaBancario {
 				"Luis Guillon");
 		
 		//Agrega una cuenta al cliente --> 1-Caja de ahorro 2-Cuenta Corriente
-		Cuenta cuenta1 = cuentaService.crearCuentaCorriente(2, 1500.0, "1000002225484");
+		Cuenta cuenta1 = cuentaService.crearCuentaCorriente(2, 1500.0, "1000002225484", "Pesos");
 		cliente1.getCuentas().add(cuenta1);
 		Cuenta cuenta2 = cuentaService.crearCajaDeAhorro(1, 10000.0, "30000055515458", "Pesos");
 		cliente1.getCuentas().add(cuenta2);

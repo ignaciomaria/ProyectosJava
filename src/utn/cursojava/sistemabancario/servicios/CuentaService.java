@@ -1,9 +1,7 @@
 package utn.cursojava.sistemabancario.servicios;
 
 import utn.cursojava.sistemabancario.dao.CuentaDAO;
-import utn.cursojava.sistemabancario.modelo.CajaDeAhorro;
 import utn.cursojava.sistemabancario.modelo.Cuenta;
-import utn.cursojava.sistemabancario.modelo.CuentaCorriente;
 
 public class CuentaService implements ICuentaService {
 	
@@ -13,15 +11,10 @@ public class CuentaService implements ICuentaService {
 		cuentaDAO = new CuentaDAO();
 	}
 	
-	public CuentaCorriente crearCuentaCorriente(Integer numCuenta, Double saldo, String cbu) {
-		CuentaCorriente cC = new CuentaCorriente(numCuenta, saldo, cbu);
-		cuentaDAO.agregarCuentaDAO(cC);
-		return cC;
-	}
-	public CajaDeAhorro crearCajaDeAhorro(Integer numCuenta, Double saldo, String cbu, String tipoMoneda) {
-		CajaDeAhorro cC = new CajaDeAhorro(numCuenta, saldo, cbu, tipoMoneda);
-		cuentaDAO.agregarCuentaDAO(cC);
-		return cC;
+	public Cuenta crearCuenta(Integer numCuenta, Double saldo, String cbu, String tipoMoneda) {
+		Cuenta c = new Cuenta(numCuenta, saldo, cbu, tipoMoneda);
+		cuentaDAO.agregarCuentaDAO(c);
+		return c;
 	}
 	
 	public void listarCuentas() {

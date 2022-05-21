@@ -3,7 +3,6 @@ package utn.cursojava.sistemabancario.dao;
 import java.util.List;
 
 import utn.cursojava.sistemabancario.modelo.Cliente;
-import utn.cursojava.sistemabancario.modelo.Cuenta;
 
 public interface IClienteDAO {
 
