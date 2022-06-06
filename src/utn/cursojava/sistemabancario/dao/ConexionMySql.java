@@ -1,4 +1,4 @@
-package utn.cursojava.sistemabancario.constants;
+package utn.cursojava.sistemabancario.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -18,18 +18,23 @@ public class ConexionMySql {
 			Class.forName(mySqlDriver);
 			//establecer conexion
 			conexion = DriverManager.getConnection(urlDB, user, pass);
-			if(conexion != null) {
-				System.out.println("Conexion exitosa");
-			}
 		}catch(ClassNotFoundException nfe) {
 			nfe.printStackTrace();
 		}catch(SQLException sqle) {
 			sqle.printStackTrace();
 		}
 	}
-	//Verifica si existe conexion
+	//Traer conexion
 	public Connection getConexion() {
 		return this.conexion;
+	}
+	//Verifica si existe conexion
+	public void verificarConexion() {
+		if(this.getConexion() != null) {
+				System.out.println("\nConexion exitosa con la base de datos.");
+		}else {
+			System.out.println("No se pudo conectar a la base de datos.");
+		}
 	}
 	//Cerrar conexion
 	public void cerrarConexion() {

@@ -1,18 +1,16 @@
 package utn.cursojava.sistemabancario.servicios;
 
+import java.util.List;
+
 import utn.cursojava.sistemabancario.modelo.Cliente;
-import utn.cursojava.sistemabancario.modelo.Cuenta;
 
 public interface IClienteService {
 
-	public void agregarCliente(Cliente cliente);
-	public void agregarCuentaACliente(Cuenta cuenta);
-	public void listarClientes();
+	public void agregarCliente(Integer dni, String nombreApellido, Integer telefono, String email, String domicilio);
+	public void imprimirClientes();
+	public List<Cliente> listarClientes();
+	public void eliminarCliente(Integer dni);
+	public void eliminarClientes();
 	
-	/*
-	
-	public List<Cliente> listarClientes(Integer nroSucursal);
-	
-	public List<Cuenta> listarCuentas();*/
 
 }

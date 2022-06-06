@@ -63,17 +63,16 @@ public class Cliente extends Persona {
 	public void setNroCliente(Integer nroCliente) {
 		this.nroCliente = nroCliente;
 	}
-
-	@Override
-	public String toString() {
-		return this.nombreApellido+" | "+this.domicilio+"\n"+this.imprimirCuentas();
-	}
 	
+	public String toString() {
+		return "\n"+this.nroCliente+"--"+this.nombreApellido+" | "+this.domicilio;
+	}
+	/*
 	public String imprimirCuentas() {
 		String auxiliar=" ";
 		for(Cuenta cuenta: this.cuentas) {
 			auxiliar += cuenta+"\n";
 		}
 		return auxiliar;
-	}
+	}*/
 }
