@@ -1,9 +1,10 @@
 package utn.cursojava.sistemabancario.servicios;
 
+import java.util.List;
+
 import utn.cursojava.sistemabancario.dao.ClienteDAO;
 import utn.cursojava.sistemabancario.dao.IClienteDAO;
 import utn.cursojava.sistemabancario.modelo.Cliente;
-import utn.cursojava.sistemabancario.modelo.Cuenta;
 
 public class ClienteService implements IClienteService {
 
@@ -15,53 +16,44 @@ public class ClienteService implements IClienteService {
 	
 	
 	@Override
-	public void agregarCliente(Cliente cliente) {
-		clienteDao.agregarClienteDAO(cliente);;
+	public void agregarCliente(Integer dni, String nombreApellido, Integer telefono, String email, String domicilio) {
+		//nroCliente es auto-incremental
+		int nroCliente=1;
+		List<Cliente> listaAux = this.listarClientes();
+		if(listaAux.size()>0) {
+			 nroCliente = listaAux.get(listaAux.size()-1).getNroCliente()+1;
+		}
+		Cliente cliente = new Cliente(nroCliente ,dni, nombreApellido, telefono, email, domicilio);
+		clienteDao.agregarClienteDAO(cliente);
 	}
 	
-	public void agregarCuentaACliente(Cuenta cuenta) {
-		
-	}
-	
-	public void listarClientes() {
-		System.out.println("\nClientes:\n");
-		for (Cliente clientes : clienteDao.listarClientesDAO()) {
+	public void imprimirClientes() {
+		ICuentaService cuentaService = new CuentaService();
+		System.out.println("\nClientes:");
+		for (Cliente clientes : this.listarClientes()) {
 			System.out.println(clientes);
-			System.out.println("\n");
+			cuentaService.imprimirCuentas(clientes);
 		}
 	}
 	
+	@Override
+	public List<Cliente> listarClientes() {
+		// TODO Auto-generated method stub
+		return clienteDao.listarClientesDAO();
+	}
 	
-	
-	/*
-	public void deleteCiente(String dni) {
-		clienteDao.deleteCliente(dni);
+	@Override
+	public void eliminarCliente(Integer dni) {
+		// TODO Auto-generated method stub
+		clienteDao.eliminarCliente(dni);
+		System.out.println("El cliente con DNI "+dni+" fue eliminado.");
 	}
-
-	// 31/03/1989
-	public void validarFechaNacimiento(String fechaNacimiento) {
-		// TODO: Validar que la edad sea mayor a 18 años
-		
-	}
-
-	public Boolean validarEmail(String email) {
-		// TODO: Validar que el email tenga un formato adecuado
-
-		return Boolean.TRUE;
-	}
-
-	public List<Cliente> listarClientes(Integer nroSucursal) {
-		return clienteDao.findClientsBySucursal(nroSucursal);
-	}
-
-	
 
 	@Override
-	public List<Cuenta> listarCuentas() {
-		return clienteDao.listarCuentas();
+	public void eliminarClientes() {
+		// TODO Auto-generated method stub
+		clienteDao.eliminarTodosClientes();
+		System.out.println("Todos los clientes fueron eliminados.");
 	}
-	*/
-
-
 	
 }
